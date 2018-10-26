@@ -21,8 +21,8 @@ class User < ApplicationRecord
 
   def init_user_profile
     location = Location.create(company_name: company_name, location_name: "HQ", address: address)
-    UsersRole.create(user_id: id, role_id: 9, location_id: location.id)
-    UsersRole.create(user_id: id, role_id: 10, location_id: location.id)
-    UsersRole.create(user_id: id, role_id: 14, location_id: location.id)
+    UsersRole.create!(user_id: id, role_id: 9, location_id: location.id)
+    UsersRole.create!(user_id: id, role_id: 10, location_id: location.id)
+    UsersRole.create!(user_id: id, role_id: 14, location_id: location.id)
   end
 end

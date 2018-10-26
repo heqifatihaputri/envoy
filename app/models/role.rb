@@ -14,7 +14,7 @@ validates :resource_type,
 scopify
 
 has_many :users_roles
-has_many :users, through: :users_roles
-has_many :locations, through: :users_roles
+has_many :users
+has_many :locations
 
 end
