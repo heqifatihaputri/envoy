@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_26_060941) do
+ActiveRecord::Schema.define(version: 2018_10_26_075031) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "invites", force: :cascade do |t|
+    t.integer "location_id"
+    t.datetime "arrival"
+    t.string "full_name"
+    t.string "email_visitor"
+    t.string "host"
+    t.text "private_notes"
+    t.datetime "sign_in_time"
+    t.boolean "signed_in", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "locations", force: :cascade do |t|
     t.string "location_name"
@@ -55,6 +68,22 @@ ActiveRecord::Schema.define(version: 2018_10_26_060941) do
     t.index ["role_id"], name: "index_users_roles_on_role_id"
     t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
     t.index ["user_id"], name: "index_users_roles_on_user_id"
+  end
+
+  create_table "visitors", force: :cascade do |t|
+    t.string "your_full_name"
+    t.string "your_email_address"
+    t.text "purpose_of_visit"
+    t.string "photo_url"
+    t.string "host"
+    t.integer "location_id"
+    t.text "private_notes"
+    t.datetime "sign_in_time"
+    t.datetime "sign_out_time"
+    t.boolean "signed_in", default: false
+    t.boolean "signed_out", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

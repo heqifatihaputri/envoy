@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @invite.location_id %>
+</p>
+
+<p>
+  <strong>Arrival:</strong>
+  <%= @invite.arrival %>
+</p>
+
+<p>
+  <strong>Full name:</strong>
+  <%= @invite.full_name %>
+</p>
+
+<p>
+  <strong>Email visitor:</strong>
+  <%= @invite.email_visitor %>
+</p>
+
+<p>
+  <strong>Host:</strong>
+  <%= @invite.host %>
+</p>
+
+<p>
+  <strong>Private notes:</strong>
+  <%= @invite.private_notes %>
+</p>
+
+<p>
+  <strong>Sign in time:</strong>
+  <%= @invite.sign_in_time %>
+</p>
+
+<%= link_to 'Edit', edit_invite_path(@invite) %> |
+<%= link_to 'Back', invites_path %>
