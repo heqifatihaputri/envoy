@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :invites
+  resources :invites do
+    put 'signed_in' => 'invites#signed_in'
+  end
   resources :visitors do
     put 'signed_out' => 'visitors#signed_out'
   end

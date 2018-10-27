@@ -1,16 +1,35 @@
+<div class="wrapper">
 <p id="notice"><%= notice %></p>
 
 <h1>Invites</h1>
 
-<table>
+<div class="search">
+  <%= form_tag invites_path, :method => 'get' do %>
+  <%= label_tag(:search, "") %>
+    <p>
+      <%= text_field_tag :search, params[:search], placeholder: "Searching Invites" %>
+      <%= submit_tag "Search" %>
+    </p><br>
+  <% end %>
+</div>
+
+<div>
+  <%= form_tag invites_path, :method => 'get' do %>
+  <%= label_tag(:date, "") %>
+    <p>
+      <%= date_field_tag :date, params[:date] %>
+      <%= submit_tag "Submit" %>
+    </p><br>
+  <% end %>
+</div>
+
+<table width="100%">
   <thead>
     <tr>
-      <th>Location</th>
       <th>Arrival</th>
       <th>Full name</th>
-      <th>Email visitor</th>
+      <th>Visitor Email Address</th>
       <th>Host</th>
-      <th>Private notes</th>
       <th>Sign in time</th>
       <th colspan="3"></th>
     </tr>
@@ -19,16 +38,21 @@
   <tbody>
     <% @invites.each do |invite| %>
       <tr>
-        <td><%= invite.location_id %></td>
-        <td><%= invite.arrival %></td>
+        <td><%= invite.arrival.strftime("%e %b %Y %H:%M:%S%p") %></td>
         <td><%= invite.full_name %></td>
         <td><%= invite.email_visitor %></td>
         <td><%= invite.host %></td>
-        <td><%= invite.private_notes %></td>
-        <td><%= invite.sign_in_time %></td>
-        <td><%= link_to 'Show', invite %></td>
-        <td><%= link_to 'Edit', edit_invite_path(invite) %></td>
-        <td><%= link_to 'Destroy', invite, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <% if invite.signed_in? %>
+            <%= invite.sign_in_time.strftime("%e %b %Y %H:%M:%S%p") %>
+          <% else %>
+            Not yet
+            <td><%= link_to 'Sign In', invite_signed_in_path(invite), method: :put  %>
+                <%= link_to 'Delete Visitor', invite, method: :delete, data: { confirm: 'Are you sure?' } %>
+            </td>
+          <% end %>
+        </td>
+        <td></td>
       </tr>
     <% end %>
   </tbody>
@@ -37,3 +61,6 @@
 <br>
 
 <%= link_to 'New Invite', new_invite_path %>
+
+<%= link_to 'Bulk create invites'%>
+</div>

@@ -1,10 +1,16 @@
 class InvitesController < ApplicationController
-  before_action :set_invite, only: [:show, :edit, :update, :destroy]
+  before_action :set_invite, only: [:show, :edit, :update, :destroy, :signed_in]
 
   # GET /invites
   # GET /invites.json
   def index
-    @invites = Invite.all
+    @invites = if params[:search]
+      Invite.search_by_full_name(params[:search])
+    elsif params[:date]
+      Invite.search_by_date(params[:date])
+    else
+      Invite.where(arrival: Date.today.all_day)
+    end
   end
 
   # GET /invites/1
@@ -61,10 +67,16 @@ class InvitesController < ApplicationController
     end
   end
 
+  def signed_in
+   @invite.sign_in
+   redirect_to invites_path
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_invite
-      @invite = Invite.find(params[:id])
+      id = params[:id].present? ? (params[:id]) : (params[:invite_id])
+      @invite = Invite.find(id)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
