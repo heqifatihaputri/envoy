@@ -22,11 +22,14 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="dropdown">
+              <% if user_signed_in? %>
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Locations <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><%= link_to "List" %></li>
-                <li><%= link_to "New" %></li>
+                  <% current_user.locations.each do |location| %>
+                    <li><%= link_to location.company_name, visitors_path %></li>
+                  <% end %>
               </ul>
+              <% end %>
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
@@ -50,6 +53,12 @@
       </div>
     </div>
   </nav>
+  <div class="sidenav">
+      <li><%= link_to "Visitor Log", visitors_path %></li>
+      <li><%= link_to "Invites", invites_path %></li>
+      <li><%= link_to "Devise", invites_path %></li>
+      <li><%= link_to "Settings", invites_path %></li>
+  </div>
   <div id="main-container" class="container">
     <%= yield %>
   </div>
