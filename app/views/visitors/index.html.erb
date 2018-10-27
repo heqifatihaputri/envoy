@@ -3,6 +3,26 @@
 
 <h1>Visitor Logs</h1>
 
+<div class="search">
+  <%= form_tag visitors_path, :method => 'get' do %>
+  <%= label_tag(:search, "") %>
+    <p>
+      <%= text_field_tag :search, params[:search], placeholder: "Searching Visitor" %>
+      <%= submit_tag "Search", :name => nil %>
+    </p><br>
+  <% end %>
+</div>
+
+<div>
+  <%= form_tag visitors_path, :method => 'get' do %>
+  <%= label_tag(:date, "") %>
+    <p>
+      <%= date_field_tag :date, params[:date] %>
+      <%= submit_tag "Submit" %>
+    </p><br>
+  <% end %>
+</div>
+
 <table width="100%">
   <thead>
     <tr>

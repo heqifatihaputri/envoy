@@ -30,6 +30,7 @@ gem 'jquery-ui-rails'
 gem 'devise'
 gem 'cancancan'
 gem 'rolify'
+gem 'pg_search'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password

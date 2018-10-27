@@ -4,7 +4,13 @@ class VisitorsController < ApplicationController
   # GET /visitors
   # GET /visitors.json
   def index
-    @visitors = Visitor.all
+    @visitors = if params[:search]
+      Visitor.search_by_full_name(params[:search])
+    elsif params[:date]
+      Visitor.search_by_date(params[:date])
+    else
+      Visitor.where(created_at: Date.today.all_day)
+    end
   end
 
   # GET /visitors/1
