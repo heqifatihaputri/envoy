@@ -19,6 +19,7 @@
 #
 
 class Visitor < ApplicationRecord
+  mount_uploader :photo_url, PhotoUrlUploader
   belongs_to :location
 
   include PgSearch
