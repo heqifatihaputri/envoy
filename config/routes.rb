@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :invites
-  resources :visitors
+  resources :visitors do
+    put 'signed_out' => 'visitors#signed_out'
+  end
   resources :locations
   devise_for :users, controllers: {
       registrations: 'users/registrations'

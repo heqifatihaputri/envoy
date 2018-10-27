@@ -19,4 +19,11 @@
 #
 
 class Visitor < ApplicationRecord
+  belongs_to :location
+
+  def sign_out
+    self.signed_out = true
+    self.sign_out_time = Time.now
+    self.save!
+  end
 end

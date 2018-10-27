@@ -1,5 +1,5 @@
 class VisitorsController < ApplicationController
-  before_action :set_visitor, only: [:show, :edit, :update, :destroy]
+  before_action :set_visitor, only: [:show, :edit, :update, :destroy, :signed_out]
 
   # GET /visitors
   # GET /visitors.json
@@ -61,14 +61,20 @@ class VisitorsController < ApplicationController
     end
   end
 
+  def signed_out
+   @visitor.sign_out
+   redirect_to visitors_path
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_visitor
-      @visitor = Visitor.find(params[:id])
+      id = params[:id].present? ? (params[:id]) : (params[:visitor_id])
+      @visitor = Visitor.find(id)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def visitor_params
-      params.require(:visitor).permit(:your_full_name, :your_email_address, :purpose_of_visit, :photo_url, :host, :location_id)
+      params.require(:visitor).permit(:your_full_name, :your_email_address, :purpose_of_visit, :photo_url, :host, :location_id, :private_notes, :sign_in_time, :sign_out_time, :signed_out)
     end
 end
