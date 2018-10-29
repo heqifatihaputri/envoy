@@ -13,7 +13,7 @@
   </thead>
 
   <tbody>
-    <% @locations.each do |location| %>
+    <% current_user.locations.each do |location| %>
       <tr>
         <td><%= location.location_name %></td>
         <td><%= location.company_name %></td>

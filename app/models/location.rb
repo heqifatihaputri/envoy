@@ -19,4 +19,14 @@ class Location < ApplicationRecord
 
   has_many :visitors
   has_many :invites
+
+  # after_create :init_user_role
+
+  # attr_accessor :current_role, :current_user
+
+  # attr_accessor :user_id, :role_id, :location_id
+
+  # def init_user_role
+  #   UsersRole.create!(user_id: current_user, role_id: current_role, location_id: id)
+  # end
 end

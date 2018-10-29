@@ -12,14 +12,29 @@ class Ability
     #   end
     user ||= User.new
       if User.current_role == 'Global Admin' 
-          can :manage, :all 
+        can :manage, Users
+        can :manage, Visitors
+        can :manage, Invites
+        can :manage, Locations
+      elsif User.current_role == 'Location Admin'
+        can :manage, Users
+        can :manage, Visitors
+        can :manage, Invites
+          # can :read, Users
+          # can :update, Users
+          # cannot :destroy, Users
+          # cannot :create, Users
+      elsif User.current_role == 'Front Desk Admin'
+        can :read, Users
+        can :read, Visitors
+        can :update, Visitors
+        can :manage, Invites
+      elsif User.current_role == 'Security Admin'
+        can :read, Visitors
+      elsif User.current_role == 'Employee'
+        can :read, Visitors
+        can :create, Invites
       else
-        if User.current_role == 'Location Admin'
-            can :read, Users
-            can :update, Users
-            cannot :destroy, Users
-            cannot :create, Users
-        end
         can :read, :all
       end
     #

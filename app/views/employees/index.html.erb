@@ -1,0 +1,31 @@
+<div class="wrapper">
+<p id="notice"><%= notice %></p>
+
+<h1>Employee</h1>
+
+<table width="100%">
+  <thead>
+    <tr>
+      <th>Full Name</th>
+      <th>Email</th>
+      <th>Mobile Number</th>
+      <th>Assistant Email</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @employees.each do |user| %>
+      <tr>
+        <td><%= user.full_name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.phone_number %></td>
+        <td><%= user.assistant_email %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Add Employee', employees_new_path %>
+</div>

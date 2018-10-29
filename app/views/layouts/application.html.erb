@@ -28,6 +28,7 @@
                   <% current_user.locations.each do |location| %>
                     <li><%= link_to location.company_name, visitors_path %></li>
                   <% end %>
+                  <li><%= link_to 'Add Location', new_location_path %></li>
               </ul>
               <% end %>
             </li>
@@ -56,6 +57,7 @@
   <div class="sidenav">
       <li><%= link_to "Visitor Log", visitors_path %></li>
       <li><%= link_to "Invites", invites_path %></li>
+      <li><%= link_to "All Employees", employees_path %></li>
       <li><%= link_to "Devise", invites_path %></li>
       <li><%= link_to "Settings", invites_path %></li>
   </div>
