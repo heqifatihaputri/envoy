@@ -1,0 +1,16 @@
+wb = xlsx_package.workbook #create excel book
+wb.add_worksheet(name: "Visitors Log") do |sheet|
+  header = wb.styles.add_style({:alignment => {:horizontal => :center, :vertical => :center, :wrap_text => true}, :border => { :style => :thin, :color => "000000" }}) 
+  border = wb.styles.add_style({:border => { :style => :thin, :color => "000000" }}) 
+  align_right = wb.styles.add_style({:alignment => {:horizontal => :right}}) 
+  align_left = wb.styles.add_style({:alignment => {:horizontal => :left}})
+  sheet.add_row ["VISITORS LOG", "report based on #{@reporting_date}"]
+  sheet.add_row
+  sheet.add_row ["Date :"], :style => [align_right, align_left]
+  sheet.add_row ["ID", "LOCATION", "ARRIVAL","EMAIL VISITOR", "FULL NAME", "HOST ID", "PRIVATE NOTES", "SIGN IN TIME"]
+  
+  # each invite is a row on your spreadsheet
+  @invites.each do |invite|
+    sheet.add_row [invite.id, invite.location.company_name, invite.arrival, invite.email_visitor, invite.full_name, invite.host, invite.private_notes, invite.sign_in_time]
+  end
+end

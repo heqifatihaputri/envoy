@@ -11,6 +11,11 @@ class VisitorsController < ApplicationController
     else
       Visitor.where(created_at: Date.today.all_day)
     end
+
+    respond_to do |format|
+      format.html
+      format.xlsx
+    end
   end
 
   # GET /visitors/1
