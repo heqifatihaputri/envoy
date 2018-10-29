@@ -12,6 +12,11 @@ class InvitesController < ApplicationController
     else
       Invite.where(arrival: Date.today.all_day)
     end
+
+    respond_to do |format|
+      format.html
+      format.xlsx
+    end
   end
 
   # GET /invites/1
