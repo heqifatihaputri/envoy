@@ -40,6 +40,9 @@ class InvitesController < ApplicationController
 
     respond_to do |format|
       if @invite.save
+
+        UserMailer.invite_email(@invite).deliver
+
         format.html { redirect_to @invite, notice: 'Invite was successfully created.' }
         format.json { render :show, status: :created, location: @invite }
       else

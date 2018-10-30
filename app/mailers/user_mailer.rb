@@ -6,4 +6,9 @@ class UserMailer < ApplicationMailer
     @url  = 'http://example.com/login'
     mail(to: @user.email, subject: 'Welcome to Envoy App')
   end
+
+  def invite_email(invite)
+    @invite = invite
+    mail(to: @invite.email_visitor, subject: "You've been invited to manage Envoy")
+  end
 end
