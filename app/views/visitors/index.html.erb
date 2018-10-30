@@ -28,7 +28,7 @@
 <table width="100%">
   <thead>
     <tr>
-      <th>Location id</th>
+      <th>Location</th>
       <th>Your email address</th>
       <th>Your full name</th>
       <th>Private notes</th>
@@ -43,7 +43,7 @@
   <tbody>
     <% @visitors.each do |visitor_log| %>
       <tr>
-        <td><%= visitor_log.location_id %></td>
+        <td><%= visitor_log.location.company_name %></td>
         <td><%= visitor_log.your_email_address %></td>
         <td><%= visitor_log.your_full_name %></td>
         <td><%= visitor_log.private_notes %></td>
