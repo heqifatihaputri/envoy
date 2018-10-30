@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_27_032958) do
+ActiveRecord::Schema.define(version: 2018_10_30_062024) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,12 +20,12 @@ ActiveRecord::Schema.define(version: 2018_10_27_032958) do
     t.datetime "arrival"
     t.string "full_name"
     t.string "email_visitor"
-    t.string "host"
     t.text "private_notes"
     t.datetime "sign_in_time"
     t.boolean "signed_in", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -83,7 +83,6 @@ ActiveRecord::Schema.define(version: 2018_10_27_032958) do
     t.string "your_email_address"
     t.text "purpose_of_visit"
     t.string "photo_url"
-    t.string "host"
     t.integer "location_id"
     t.text "private_notes"
     t.datetime "sign_in_time"
@@ -92,6 +91,7 @@ ActiveRecord::Schema.define(version: 2018_10_27_032958) do
     t.boolean "signed_out", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
   end
 
 end

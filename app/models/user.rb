@@ -45,6 +45,9 @@ class User < ApplicationRecord
   has_many :roles, through: :users_roles
   has_many :locations, through: :users_roles
 
+  has_many :invites
+  has_many :visitors
+
   after_create :init_user_profile
 
   attr_accessor :address, :company_name, :location_name, :user_id, :role_id, :location_id

@@ -21,8 +21,8 @@
     </div>
 
     <div class="field">
-      <%= f.label :host %>
-      <%= f.collection_select :host, User.order(:full_name), :id, :full_name, include_blank: false %>
+      <%= f.label "Host" %>
+      <%= f.collection_select :user_id, User.order(:full_name), :id, :full_name, include_blank: false %>
     </div>
 
      <div class="field">
