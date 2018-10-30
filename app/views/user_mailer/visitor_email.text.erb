@@ -1,7 +1,7 @@
 <h1><%= @visitor.your_full_name %> is here to see you at <%= @visitor.location.company_name %></h1>
-<h2>Signed in at <%= @visitor.location_name %> on <%= @visitor.sign_in_time %></h2>
+<h2>Signed in at <%= @visitor.location.company_name %> on <%= @visitor.sign_in_time %></h2>
   <p><%= @visitor.your_full_name %></p>
   <p><%= @visitor.your_email_address %></p>
-  <p><%= @visitor.host %></p>
+  <p><%= @visitor.user.full_name %></p>
   <p><%= @visitor.purpose_of_visit %></p>
   <p>Signed today</p>
