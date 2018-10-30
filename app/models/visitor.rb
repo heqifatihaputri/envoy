@@ -3,7 +3,6 @@
 # Table name: visitors
 #
 #  id                 :bigint(8)        not null, primary key
-#  host               :string
 #  photo_url          :string
 #  private_notes      :text
 #  purpose_of_visit   :text
@@ -16,11 +15,13 @@
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  location_id        :integer
+#  user_id            :integer
 #
 
 class Visitor < ApplicationRecord
   mount_uploader :photo_url, PhotoUrlUploader
   belongs_to :location
+  belongs_to :user
 
   include PgSearch
   pg_search_scope :search_by_full_name, against: [:your_full_name],

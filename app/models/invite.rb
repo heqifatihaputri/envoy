@@ -6,17 +6,18 @@
 #  arrival       :datetime
 #  email_visitor :string
 #  full_name     :string
-#  host          :string
 #  private_notes :text
 #  sign_in_time  :datetime
 #  signed_in     :boolean          default(FALSE)
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  location_id   :integer
+#  user_id       :integer
 #
 
 class Invite < ApplicationRecord
   belongs_to :location
+  belongs_to :user
 
   include PgSearch
   pg_search_scope :search_by_full_name, against: [:full_name],

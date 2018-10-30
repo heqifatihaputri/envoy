@@ -41,18 +41,18 @@
   <tbody>
     <% @invites.each do |invite| %>
       <tr>
-        <td><%= invite.location_id %></td>
+        <td><%= invite.location.company_name %></td>
         <td><%= invite.arrival.strftime("%e %b %Y %H:%M:%S%p") %></td>
         <td><%= invite.full_name %></td>
         <td><%= invite.email_visitor %></td>
-        <td><%= invite.host %></td>
+        <td><%= invite.user.full_name %></td>
         <td>
           <% if invite.signed_in? %>
             <%= invite.sign_in_time.strftime("%e %b %Y %H:%M:%S%p") %>
           <% else %>
             Not yet
             <td><%= link_to 'Sign In', invite_signed_in_path(invite), method: :put  %>
-                <%= link_to 'Delete Visitor', invite, method: :delete, data: { confirm: 'Are you sure?' } %>
+                <%= link_to 'Delete Invite', invite, method: :delete, data: { confirm: 'Are you sure?' } %>
             </td>
           <% end %>
         </td>
