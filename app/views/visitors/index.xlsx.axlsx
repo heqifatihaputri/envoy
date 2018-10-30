@@ -7,10 +7,10 @@ wb.add_worksheet(name: "Visitors Log") do |sheet|
   sheet.add_row ["VISITORS LOG", "report based on #{@reporting_date}"]
   sheet.add_row
   sheet.add_row ["Date :"], :style => [align_right, align_left]
-  sheet.add_row ["ID", "LOCATION","HOST ID", "PHOTO URL", "PRIVATE NOTES", "PURPOSE OF VISIT", "YOUR EMAIL ADDRESS", "YOUR FULL NAME", "SIGN IN TIME", "SIGN OUT TIME"]
+  sheet.add_row ["ID", "LOCATION","HOST", "PHOTO URL", "PRIVATE NOTES", "PURPOSE OF VISIT", "YOUR EMAIL ADDRESS", "YOUR FULL NAME", "SIGN IN TIME", "SIGN OUT TIME"]
   
   # each visitor is a row on your spreadsheet
   @visitors.each do |visitor|
-    sheet.add_row [visitor.id, visitor.location.company_name, visitor.host, visitor.photo_url, visitor.private_notes, visitor.purpose_of_visit, visitor.your_email_address, visitor.your_full_name, visitor.sign_in_time, visitor.sign_out_time]
+    sheet.add_row [visitor.id, visitor.location.company_name, visitor.user.full_name, visitor.photo_url, visitor.private_notes, visitor.purpose_of_visit, visitor.your_email_address, visitor.your_full_name, visitor.sign_in_time, visitor.sign_out_time]
   end
 end
