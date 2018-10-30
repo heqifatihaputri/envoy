@@ -38,6 +38,8 @@ class VisitorsController < ApplicationController
   def create
     @visitor = Visitor.new(visitor_params)
 
+    UserMailer.visitor_email(@visitor).deliver
+
     respond_to do |format|
       if @visitor.save
         format.html { redirect_to @visitor, notice: 'Visitor was successfully created.' }
@@ -87,6 +89,6 @@ class VisitorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def visitor_params
-      params.require(:visitor).permit(:your_full_name, :your_email_address, :purpose_of_visit, :photo_url, :host, :location_id, :private_notes, :sign_in_time, :sign_out_time, :signed_out)
+      params.require(:visitor).permit(:your_full_name, :your_email_address, :purpose_of_visit, :photo_url, :user_id, :location_id, :private_notes, :sign_in_time, :sign_out_time, :signed_out)
     end
 end

@@ -12,8 +12,8 @@ class UserMailer < ApplicationMailer
     mail(to: @invite.email_visitor, subject: "You've been invited to manage Envoy")
   end
 
-  # def visitor_email(visitor)
-  #   @visitor = visitor
-  #   mail(to: @visitor.user.email, subject: "<%= @visitor.your_full_name %> is here to see you at <%= @visitor.location.company_name %>")
-  # end
+  def visitor_email(visitor)
+    @visitor = visitor
+    mail(to: @visitor.user.email, subject: "Your visitor has arrived")
+  end
 end
