@@ -28,9 +28,9 @@
 <table width="100%">
   <thead>
     <tr>
+      <th>Full name</th>
       <th>Location id</th>
       <th>Arrival</th>
-      <th>Full name</th>
       <th>Visitor Email Address</th>
       <th>Host</th>
       <th>Sign in time</th>
@@ -41,9 +41,9 @@
   <tbody>
     <% @invites.each do |invite| %>
       <tr>
+        <td><b><%= link_to invite.full_name, edit_invite_path(invite) %></b></td>
         <td><%= invite.location.company_name %></td>
         <td><%= invite.arrival.strftime("%e %b %Y %H:%M:%S%p") %></td>
-        <td><%= invite.full_name %></td>
         <td><%= invite.email_visitor %></td>
         <td><%= invite.user.full_name %></td>
         <td>
