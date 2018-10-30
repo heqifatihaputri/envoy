@@ -28,6 +28,7 @@
 <table width="100%">
   <thead>
     <tr>
+      <th>Location id</th>
       <th>Arrival</th>
       <th>Full name</th>
       <th>Visitor Email Address</th>
@@ -40,6 +41,7 @@
   <tbody>
     <% @invites.each do |invite| %>
       <tr>
+        <td><%= invite.location_id %></td>
         <td><%= invite.arrival.strftime("%e %b %Y %H:%M:%S%p") %></td>
         <td><%= invite.full_name %></td>
         <td><%= invite.email_visitor %></td>

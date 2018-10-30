@@ -4,9 +4,11 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1><%= @invite.host %></h1>
-    <h2><%= @invite.host %>invite you to <%= @invite.host %></h2>
+    <h1><%= @invite.location.company_name %></h1>
+    <h2><%= @invite.host %>invite you to <%= @invite.location.company_name %> <%= @invite.location.location_name %></h2>
       <p><%= @invite.host %> / <%= @invite.full_name%></p>
       <p><%= @invite.arrival.strftime("%e %b %Y %H:%M:%S%p") %></p>
+      <p><%= @invite.location.company_name %></p>
+      <p><%= @invite.location.address %></p>
   </body>
 </html>
