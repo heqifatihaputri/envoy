@@ -19,6 +19,7 @@ class Location < ApplicationRecord
 
   has_many :visitors
   has_many :invites
+<<<<<<< HEAD
 
   # after_create :init_user_role
 
@@ -29,4 +30,7 @@ class Location < ApplicationRecord
   # def init_user_role
   #   UsersRole.create!(user_id: current_user, role_id: current_role, location_id: id)
   # end
+=======
+  has_many :employees
+>>>>>>> third
 end
