@@ -11,12 +11,13 @@ class Ability
     #     can :read, :all
     #   end
     user ||= User.new
-      if User.current_role == 'Global Admin' 
+    user_role = user.roles.pluck(:name)
+      if user_role.include?('Global Admin')
         can :manage, Users
         can :manage, Visitors
         can :manage, Invites
         can :manage, Locations
-      elsif User.current_role == 'Location Admin'
+      elsif user_role.include?('Location Admin')
         can :manage, Users
         can :manage, Visitors
         can :manage, Invites
@@ -24,14 +25,14 @@ class Ability
           # can :update, Users
           # cannot :destroy, Users
           # cannot :create, Users
-      elsif User.current_role == 'Front Desk Admin'
+      elsif user_role.include?('Front Desk Admin')
         can :read, Users
         can :read, Visitors
         can :update, Visitors
         can :manage, Invites
-      elsif User.current_role == 'Security Admin'
+      elsif user_role.include?('Security Admin')
         can :read, Visitors
-      elsif User.current_role == 'Employee'
+      elsif user_role.include?('Employee')
         can :read, Visitors
         can :create, Invites
       else
