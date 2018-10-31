@@ -64,10 +64,15 @@ class User < ApplicationRecord
 
   attr_accessor :address, :company_name, :location_name, :user_id, :role_id, :location_id
 
+  private
+
   def init_user_profile
-    location = Location.create(company_name: company_name, location_name: "HQ", address: address)
-    UsersRole.create!(user_id: id, role_id: 9, location_id: location.id)
-    UsersRole.create!(user_id: id, role_id: 10, location_id: location.id)
-    UsersRole.create!(user_id: id, role_id: 14, location_id: location.id)
+    unless self.invited_to_sign_up?
+      location = Location.create(company_name: company_name, location_name: "HQ", address: address)
+      UsersRole.create!(user_id: id, role_id: 9, location_id: location.id)
+      UsersRole.create!(user_id: id, role_id: 10, location_id: location.id)
+      UsersRole.create!(user_id: id, role_id: 14, location_id: location.id)
+    end
   end
+
 end
