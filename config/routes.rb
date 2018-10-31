@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :employees
   resources :invites do
     put 'signed_in' => 'invites#signed_in'
   end

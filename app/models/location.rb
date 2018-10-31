@@ -19,4 +19,5 @@ class Location < ApplicationRecord
 
   has_many :visitors
   has_many :invites
+  has_many :employees
 end
