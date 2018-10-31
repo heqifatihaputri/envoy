@@ -19,6 +19,7 @@ class Employee < ApplicationRecord
   after_create :invite_user
 
   def invite_user
-    User.invite!(full_name: full_name, email: email, phone_number: phone_number, assistant_email: assistant_email)
+    user = User.invite!(full_name: full_name, email: email, phone_number: phone_number, assistant_email: assistant_email)
+    UsersRole.create!(user_id: user.id, role_id: 14, location_id: location_id)
   end
 end
