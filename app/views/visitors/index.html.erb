@@ -43,7 +43,13 @@
   <tbody>
     <% @visitors.each do |visitor_log| %>
       <tr>
-        <td><b><%= link_to visitor_log.your_full_name, edit_visitor_path(visitor_log) %></b></td>
+        <td>
+          <% if current_user.roles.pluck(:name).include?('Global Admin' || 'Location Admin' || 'Front Desk Admin') == true %>
+            <%= link_to visitor_log.your_full_name, edit_visitor_path(visitor_log) %>
+          <% else %>
+            <%= visitor_log.your_full_name %>
+          <% end %>
+        </td>
         <td><%= visitor_log.location.company_name %></td>
         <td><%= visitor_log.your_email_address %></td>
         <td><%= visitor_log.private_notes %></td>
@@ -61,7 +67,11 @@
           <% if visitor_log.signed_out? == false %>
             <%= link_to 'Sign Out', visitor_signed_out_path(visitor_log), method: :put   %></td>
           <% end %>
-        <td><%= link_to 'Delete Visitor', visitor_log, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <% if current_user.roles.pluck(:name).include?('Global Admin' || 'Location Admin') == true %>
+            <%= link_to 'Delete Visitor', visitor_log, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
