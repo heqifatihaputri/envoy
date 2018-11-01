@@ -16,6 +16,8 @@
 #
 
 class Invite < ApplicationRecord
+  validates :arrival, :email_visitor, :full_name, :user_id, presence: true
+
   belongs_to :location
   belongs_to :user
 

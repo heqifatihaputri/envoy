@@ -20,6 +20,9 @@
 
 class Visitor < ApplicationRecord
   mount_uploader :photo_url, PhotoUrlUploader
+
+  validates :purpose_of_visit, :your_email_address, :your_full_name, :user_id, presence: true
+
   belongs_to :location
   belongs_to :user
 
