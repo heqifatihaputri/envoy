@@ -17,4 +17,17 @@ Rails.application.routes.draw do
   root 'dashboard#index'
 
   get 'admin_roles' => 'admin_roles#index'
+
+  namespace :api do
+    namespace :v1 do
+      resources :sessions, only: [:create, :show]
+      resources :users, only: [:index, :create, :show, :update, :destroy] do
+        post :activate, on: :collection
+        end
+      resources :visitors, only: [:index, :create, :show, :update, :destroy]
+      resources :invites, only: [:index, :create, :show, :update, :destroy]
+      resources :locations, only: [:index, :create, :show, :update, :destroy]
+      resources :employees, only: [:index, :create, :show, :update, :destroy]
+    end
+  end
 end
