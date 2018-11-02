@@ -10,4 +10,4 @@ Role.delete_all
 
 ['Super Admin', 'Global Admin', 'Location Admin', 'Front Desk Admin', 'Security Admin', 'Billing Admin', 'Employee'].each do |role|
   Role.find_or_create_by({name: role})
-end
+endAdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
