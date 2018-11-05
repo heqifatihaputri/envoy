@@ -8,6 +8,7 @@
 #  location_name :string
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  user_id       :integer
 #
 
 class Location < ApplicationRecord
@@ -16,6 +17,8 @@ class Location < ApplicationRecord
   has_many :users_roles
   has_many :users, through: :users_roles
   has_many :roles, through: :users_roles
+
+  belongs_to :user
 
   has_many :visitors
   has_many :invites
