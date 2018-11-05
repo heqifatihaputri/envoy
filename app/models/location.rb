@@ -28,6 +28,6 @@ class Location < ApplicationRecord
   # attr_accessor :user_id, :role_id, :location_id
 
   # def init_user_role
-  #   UsersRole.create!(user_id: current_user, role_id: current_role, location_id: id)
+  #   UserRole.create!(user_id: current_user, role_id: current_role, location_id: id)
   # end
 end
