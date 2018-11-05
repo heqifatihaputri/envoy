@@ -16,7 +16,8 @@ class Api::V1::VisitorsController < Api::V1::BaseController
   def create
     @visitor = Visitor.new(visitor_params)
     if @visitor.save
-      render json: Api::V1::VisitorSerializer.new(@visitor).serialized_json, status: :ok 
+      # render json: Api::V1::VisitorSerializer.new(@visitor).serialized_json, status: :ok
+      render json: @visitor
     else
       render_error(@visitor, :unprocessable_entity)
     end

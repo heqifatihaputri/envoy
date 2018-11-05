@@ -1,0 +1,10 @@
+table do
+  thead do
+    tr do
+      %w[id address company_name location_name created_at updated_at].each &method(:th)
+    end
+  end
+  tbody do
+    # ...
+  end
+end

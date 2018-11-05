@@ -16,7 +16,7 @@
 #
 
 class Role < ApplicationRecord
-has_and_belongs_to_many :users, :join_table => :users_roles
+has_and_belongs_to_many :users, :join_table => :user_roles
 
 
 belongs_to :resource,
@@ -30,7 +30,7 @@ validates :resource_type,
 
 scopify
 
-has_many :users_roles
+has_many :user_roles
 has_many :users
 has_many :locations
 

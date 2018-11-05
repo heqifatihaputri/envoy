@@ -23,10 +23,8 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :sessions, only: [:create, :show]
-      resources :users, only: [:index, :create, :show, :update, :destroy] do
-        post :activate, on: :collection
-        end
-      resources :visitors, only: [:index, :create, :show, :update, :destroy]
+      resources :users, only: [:index, :create, :show, :update, :destroy]
+      resources :visitors
       resources :invites, only: [:index, :create, :show, :update, :destroy]
       resources :locations, only: [:index, :create, :show, :update, :destroy]
       resources :employees, only: [:index, :create, :show, :update, :destroy]

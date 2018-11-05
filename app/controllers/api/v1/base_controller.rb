@@ -1,5 +1,5 @@
 class Api::V1::BaseController < ActionController::API
-  before_action :check_header
+  # before_action :check_header
 
   private
   def check_header
