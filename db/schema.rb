@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_05_030831) do
+ActiveRecord::Schema.define(version: 2018_11_05_065248) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,14 +83,6 @@ ActiveRecord::Schema.define(version: 2018_11_05_030831) do
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
   end
 
-  create_table "user_roles", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "role_id"
-    t.integer "location_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -126,7 +118,7 @@ ActiveRecord::Schema.define(version: 2018_11_05_030831) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
-  create_table "users_roles", id: false, force: :cascade do |t|
+  create_table "users_roles", force: :cascade do |t|
     t.integer "user_id"
     t.integer "role_id"
     t.integer "location_id"

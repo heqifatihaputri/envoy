@@ -53,9 +53,9 @@ class User < ApplicationRecord
 
   attr_accessor :current_role 
 
-  has_many :user_roles
-  has_many :roles, through: :user_roles
-  has_many :locations, through: :user_roles
+  has_many :users_roles
+  has_many :roles, through: :users_roles
+  has_many :locations, through: :users_roles
 
   has_many :invites
   has_many :visitors
@@ -69,9 +69,9 @@ class User < ApplicationRecord
   def init_user_profile
     unless self.invited_to_sign_up?
       location = Location.create(company_name: company_name, location_name: "HQ", address: address)
-      UserRole.create!(user_id: id, role_id: 9, location_id: location.id)
-      UserRole.create!(user_id: id, role_id: 10, location_id: location.id)
-      UserRole.create!(user_id: id, role_id: 14, location_id: location.id)
+      UsersRole.create!(user_id: id, role_id: 9, location_id: location.id)
+      UsersRole.create!(user_id: id, role_id: 10, location_id: location.id)
+      UsersRole.create!(user_id: id, role_id: 14, location_id: location.id)
     end
   end
 

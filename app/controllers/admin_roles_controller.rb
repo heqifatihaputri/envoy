@@ -1,5 +1,5 @@
 class AdminRolesController < ApplicationController
   def index
-    @user_roles = UserRole.all
+    @user_roles = UsersRole.all
   end
 end

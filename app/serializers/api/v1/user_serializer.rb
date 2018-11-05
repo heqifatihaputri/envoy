@@ -8,9 +8,9 @@ class Api::V1::UserSerializer < ActiveModel::Serializer
 
   # attr_accessor :current_role 
 
-  # has_many :user_roles
-  # has_many :roles, through: :user_roles
-  # has_many :locations, through: :user_roles
+  # has_many :users_roles
+  # has_many :roles, through: :users_roles
+  # has_many :locations, through: :users_roles
 
   # has_many :invites
   # has_many :visitors
