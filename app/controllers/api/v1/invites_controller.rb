@@ -16,7 +16,7 @@ class Api::V1::InvitesController < Api::V1::BaseController
   def create
     @invite = Invite.new(invite_params)
     if @invite.save
-      render json: @invite
+      render json: Api::V1::InviteSerializer.new(@invite).serialized_json, status: :ok 
     else
       render_error(@invite, :unprocessable_entity)
     end
