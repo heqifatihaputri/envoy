@@ -15,11 +15,10 @@ class Api::V1::LocationsController < Api::V1::BaseController
 
   def create
     @location = Location.new(location_params)
-    if @location.save
-      render json: Api::V1::LocationSerializer.new(@location).serialized_json, status: :ok 
-    else
-      render_error(@location, :unprocessable_entity)
-    end
+    @location.save!
+    render json: @location
+  rescue StandardError => e
+    render_error(e, :unprocessable_entity)
   end
 
   def update
@@ -53,6 +52,6 @@ class Api::V1::LocationsController < Api::V1::BaseController
   end
 
   def location_params
-    ActiveModelSerializers::Deserialization.jsonapi_parse(params)
+    params.require(:location).permit(:location_name, :company_name, :address)
   end
 end

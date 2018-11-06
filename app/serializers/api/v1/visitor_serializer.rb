@@ -1,4 +1,4 @@
-class Api::V1::VisitorSerializer < ActiveModel::Serializer
+class Api::V1::VisitorSerializer
   include FastJsonapi::ObjectSerializer
   attributes(*Visitor.attribute_names.map(&:to_sym))
 

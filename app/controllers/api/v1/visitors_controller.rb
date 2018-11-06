@@ -15,12 +15,10 @@ class Api::V1::VisitorsController < Api::V1::BaseController
 
   def create
     @visitor = Visitor.new(visitor_params)
-    if @visitor.save
-      # render json: Api::V1::VisitorSerializer.new(@visitor).serialized_json, status: :ok
-      render json: @visitor
-    else
-      render_error(@visitor, :unprocessable_entity)
-    end
+    @visitor.save!
+    render json: @visitor
+  rescue StandardError => e
+    render_error(e, :unprocessable_entity)
   end
 
   def update
@@ -54,6 +52,6 @@ class Api::V1::VisitorsController < Api::V1::BaseController
   end
 
   def visitor_params
-    ActiveModelSerializers::Deserialization.jsonapi_parse(params)
+    params.require(:visitor).permit(:your_full_name, :your_email_address, :purpose_of_visit, :photo_url, :user_id, :location_id, :private_notes, :sign_in_time, :sign_out_time, :signed_out)
   end
 end

@@ -1,4 +1,4 @@
-class Api::V1::LocationSerializer < ActiveModel::Serializer
+class Api::V1::LocationSerializer
   include FastJsonapi::ObjectSerializer
   attributes(*Location.attribute_names.map(&:to_sym))
 
