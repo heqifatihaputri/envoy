@@ -15,11 +15,10 @@ class Api::V1::InvitesController < Api::V1::BaseController
 
   def create
     @invite = Invite.new(invite_params)
-    if @invite.save
-      render json: Api::V1::InviteSerializer.new(@invite).serialized_json, status: :ok 
-    else
-      render_error(@invite, :unprocessable_entity)
-    end
+    @invite.save!
+    render json: @invite
+  rescue StandardError => e
+    render_error(e, :unprocessable_entity)
   end
 
   def update
@@ -53,6 +52,6 @@ class Api::V1::InvitesController < Api::V1::BaseController
   end
 
   def invite_params
-    ActiveModelSerializers::Deserialization.jsonapi_parse(params)
+    params.require(:invite).permit(:location_id, :arrival, :full_name, :email_visitor, :private_notes, :sign_in_time, :user_id)
   end
 end
