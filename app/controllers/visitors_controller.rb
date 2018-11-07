@@ -28,7 +28,7 @@ class VisitorsController < ApplicationController
 
   # GET /visitors/new
   def new
-    @visitor = Visitor.new
+    @visitor = current_location.visitors.build
   end
 
   # GET /visitors/1/edit
@@ -38,7 +38,7 @@ class VisitorsController < ApplicationController
   # POST /visitors
   # POST /visitors.json
   def create
-    @visitor = Visitor.new(visitor_params)
+    @visitor = current_location.visitors.build(visitor_params)
 
     UserMailer.visitor_email(@visitor).deliver
 

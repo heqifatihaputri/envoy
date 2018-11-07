@@ -15,5 +15,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
+//= require jquery-dynamic-selectable
 //= require turbolinks
 //= require_tree .

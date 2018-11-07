@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :dynamic_selectable do
+    get 'locations/:location_id/users_roles', to: 'location_users_roles#index', as: :location_users_roles
+  end
+
   namespace :private do
     resource :location_change, only: [:edit], controller: :location_change
   end
