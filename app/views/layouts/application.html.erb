@@ -26,7 +26,7 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Locations <span class="caret"></span></a>
               <ul class="dropdown-menu">
                   <% current_user.locations.each do |location| %>
-                    <li><%= link_to location.company_name, visitors_path %></li>
+                    <li><%= link_to location.company_name, edit_private_location_change_path(location_id: location.id) %></li>
                   <% end %>
                   <li><%= link_to 'Add Location', new_location_path %></li>
               </ul>
@@ -54,14 +54,20 @@
       </div>
     </div>
   </nav>
+
+<% if user_signed_in? %>
   <div class="sidenav">
-      <li><%= link_to "Visitor Log", visitors_path %></li>
-      <li><%= link_to "Invites", invites_path %></li>
-      <li><%= link_to "All Employees", employees_path %></li>
+    <li><%= link_to "Visitor Log", visitors_path %></li>
+    <li><%= link_to "Invites", invites_path %></li>
+    <li><%= link_to "All Employees", employees_path %></li>
+    <% unless current_user.roles.pluck(:name) == 'Employee' %>
       <li><%= link_to "Admin Roles", admin_roles_path %></li>
       <li><%= link_to "Device", invites_path %></li>
       <li><%= link_to "Settings", invites_path %></li>
+    <% end %>
   </div>
+<% end %>
+
   <div id="main-container" class="container">
     <%= yield %>
   </div>

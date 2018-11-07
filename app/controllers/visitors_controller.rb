@@ -5,12 +5,14 @@ class VisitorsController < ApplicationController
   # GET /visitors
   # GET /visitors.json
   def index
+    visitors = current_location.visitors
+
     @visitors = if params[:search]
-      Visitor.search_by_full_name(params[:search])
+      visitors.search_by_full_name(params[:search])
     elsif params[:date]
-      Visitor.search_by_date(params[:date])
+      visitors.search_by_date(params[:date])
     else
-      Visitor.where(created_at: Date.today.all_day)
+      visitors.where(created_at: Date.today.all_day)
     end
 
     respond_to do |format|

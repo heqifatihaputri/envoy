@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :private do
+    resource :location_change, only: [:edit], controller: :location_change
+  end
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 

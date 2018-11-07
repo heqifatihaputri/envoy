@@ -5,12 +5,14 @@ class InvitesController < ApplicationController
   # GET /invites
   # GET /invites.json
   def index
+    invites = current_location.invites
+
     @invites = if params[:search]
-      Invite.search_by_full_name(params[:search])
+      invites.search_by_full_name(params[:search])
     elsif params[:date]
-      Invite.search_by_date(params[:date])
+      invites.search_by_date(params[:date])
     else
-      Invite.where(arrival: Date.today.all_day)
+      invites.where(arrival: Date.today.all_day)
     end
 
     respond_to do |format|
