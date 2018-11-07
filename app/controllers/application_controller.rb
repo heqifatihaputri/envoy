@@ -11,6 +11,10 @@ class ApplicationController < ActionController::Base
     session[:location_id] = location_id
   end
 
+  def remove_location_session
+    session.delete(:location_id)
+  end
+
   private
     def session_location_id
       session[:location_id] ||= current_user.locations.first.id

@@ -18,8 +18,6 @@ class Location < ApplicationRecord
   has_many :users, through: :users_roles
   has_many :roles, through: :users_roles
 
-  belongs_to :user
-
   has_many :visitors
   has_many :invites
   has_many :employees

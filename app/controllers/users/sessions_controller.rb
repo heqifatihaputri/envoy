@@ -21,6 +21,7 @@ class Users::SessionsController < Devise::SessionsController
   # DELETE /resource/sign_out
   def destroy
     sign_out(resource_name)
+    remove_location_session
     flash[:notice] = "You have successfully logged out."
     redirect_to root_url
   end
