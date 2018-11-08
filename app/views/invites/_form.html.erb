@@ -3,11 +3,6 @@
     <%= f.error_notification %>
     <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-    <div class="field">
-      <%= f.label :location_id %>
-      <%= f.collection_select :location_id, current_user.locations.order(:company_name).uniq, :id, :company_name, include_blank: false %>
-    </div>
-
      <div class="field">
       <%= f.input :arrival %>
     </div>
@@ -22,7 +17,7 @@
 
     <div class="field">
       <%= f.label "Host" %>
-      <%= f.collection_select :user_id, User.order(:full_name), :id, :full_name, include_blank: false %>
+      <%= f.collection_select :user_id, @_current_location.users.order(:full_name).uniq, :id, :full_name, include_blank: false %>
     </div>
 
      <div class="field">

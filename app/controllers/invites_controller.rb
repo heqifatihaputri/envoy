@@ -28,7 +28,7 @@ class InvitesController < ApplicationController
 
   # GET /invites/new
   def new
-    @invite = Invite.new
+    @invite = current_location.invites.build
   end
 
   # GET /invites/1/edit
@@ -38,7 +38,7 @@ class InvitesController < ApplicationController
   # POST /invites
   # POST /invites.json
   def create
-    @invite = Invite.new(invite_params)
+    @invite = current_location.invites.build(invite_params)
 
     respond_to do |format|
       if @invite.save
