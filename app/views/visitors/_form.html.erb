@@ -23,7 +23,7 @@
 
     <div class="field">
       <%= f.label "Host" %>
-      <%= f.collection_select :user_id, User.order(:full_name), :id, :full_name, include_blank: false %>
+      <%= f.collection_select :user_id, @_current_location.users.order(:full_name).uniq, :id, :full_name, include_blank: false %>
     </div>
 
     <div class="field">
