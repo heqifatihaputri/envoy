@@ -5,7 +5,7 @@ class LocationsController < ApplicationController
   # GET /locations
   # GET /locations.json
   def index
-    @locations = current_user.locations
+    @locations = current_user.locations.uniq
   end
 
   # GET /locations/1
