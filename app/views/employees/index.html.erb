@@ -33,5 +33,6 @@
 </table>
 
 <br>
-
-<%= link_to 'New Employee', new_employee_path %>
+<% if current_user.has_role?('Global Admin' && 'Location Admin') %>
+  <%= link_to 'New Employee', new_employee_path %>
+<% end %>
