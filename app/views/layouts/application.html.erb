@@ -23,7 +23,10 @@
           <ul class="nav navbar-nav">
             <li class="dropdown">
               <% if user_signed_in? %>
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Locations <span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <% if @_current_location %>
+                  <%= @_current_location.company_name %>
+                <% end %>
               <ul class="dropdown-menu">
                   <% current_user.locations.uniq.each do |location| %>
                     <li><%= link_to location.company_name, edit_private_location_change_path(location_id: location.id) %></li>
