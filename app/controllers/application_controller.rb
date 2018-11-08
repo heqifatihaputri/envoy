@@ -3,6 +3,10 @@ class ApplicationController < ActionController::Base
     visitors_path
   end
 
+  def after_sign_up_path_for(resource)
+    visitors_path
+  end
+
   def current_location
     @_current_location ||= current_user.locations.find(session_location_id)
   end

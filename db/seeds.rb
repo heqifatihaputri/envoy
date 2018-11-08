@@ -6,8 +6,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Role.delete_all
-
-['Super Admin', 'Global Admin', 'Location Admin', 'Front Desk Admin', 'Security Admin', 'Billing Admin', 'Employee'].each do |role|
-  Role.find_or_create_by({name: role})
-endAdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+Role.create(name: "Super Admin")
+Role.create(name: "Global Admin")
+Role.create(name: "Location Admin")
+Role.create(name: "Front Desk Admin")
+Role.create(name: "Security Admin")
+Role.create(name: "Billing Admin")
+Role.create(name: "Employee")
