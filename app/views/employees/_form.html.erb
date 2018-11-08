@@ -4,11 +4,6 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="field">
-    <%= f.label :location_id %>
-    <%= f.collection_select :location_id, current_user.locations.order(:company_name), :id, :company_name, include_blank: false %>
-  </div>
-
-  <div class="field">
     <%= f.input :full_name %>
   </div>
 

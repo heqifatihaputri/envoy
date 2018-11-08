@@ -16,7 +16,7 @@ class EmployeesController < ApplicationController
 
   # GET /employees/new
   def new
-    @employee = Employee.new
+    @employee = current_location.employees.build
   end
 
   # GET /employees/1/edit
@@ -26,7 +26,7 @@ class EmployeesController < ApplicationController
   # POST /employees
   # POST /employees.json
   def create
-    @employee = Employee.new(employee_params)
+    @employee = current_location.employees.build(employee_params)
 
     respond_to do |format|
       if @employee.save

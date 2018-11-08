@@ -65,8 +65,8 @@
     <li><%= link_to "All Employees", employees_path %></li>
     <% if current_user.has_role?('Employee' && 'Global Admin' && 'Location Admin') %>
       <li><%= link_to "Admin Roles", admin_roles_path %></li>
-      <li><%= link_to "Device", invites_path %></li>
-      <li><%= link_to "Settings", invites_path %></li>
+      <li><%= link_to "Device" %></li>
+      <li><%= link_to "Settings" %></li>
     <% end %>
   </div>
 <% end %>
