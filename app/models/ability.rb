@@ -13,28 +13,31 @@ class Ability
     user ||= User.new
     user_role = user.roles.pluck(:name)
       if user_role.include?('Global Admin')
+        can :manage, Employee
         can :manage, Users
-        can :manage, Visitors
-        can :manage, Invites
-        can :manage, Locations
+        can :manage, Visitor
+        can :manage, Invite
+        can :manage, Location
       elsif user_role.include?('Location Admin')
         can :manage, Users
-        can :manage, Visitors
-        can :manage, Invites
+        can :manage, Visitor
+        can :manage, Invite
           # can :read, Users
           # can :update, Users
           # cannot :destroy, Users
           # cannot :create, Users
       elsif user_role.include?('Front Desk Admin')
         can :read, Users
-        can :read, Visitors
-        can :update, Visitors
-        can :manage, Invites
+        can :read, Visitor
+        can :update, Visitor
+        can :manage, Invite
       elsif user_role.include?('Security Admin')
         can :read, Visitors
       elsif user_role.include?('Employee')
-        can :read, Visitors
-        can :create, Invites
+        can :read, Visitor
+        can :read, Invite
+        can :create, Invite
+        can :read, Employee
       else
         can :read, :all
       end

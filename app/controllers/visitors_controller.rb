@@ -1,6 +1,7 @@
 class VisitorsController < ApplicationController
   before_action :set_visitor, only: [:show, :edit, :update, :destroy, :signed_out]
   before_action :authenticate_user!
+  load_and_authorize_resource
 
   # GET /visitors
   # GET /visitors.json

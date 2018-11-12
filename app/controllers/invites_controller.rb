@@ -1,6 +1,7 @@
 class InvitesController < ApplicationController
   before_action :set_invite, only: [:show, :edit, :update, :destroy, :signed_in]
   before_action :authenticate_user!
+  load_and_authorize_resource
 
   # GET /invites
   # GET /invites.json
