@@ -23,11 +23,11 @@ class Location < ApplicationRecord
 
   # attr_accessor :current_role, :current_user
 
-  # after_create :init_user_role
+  after_create :init_user_role
 
-  # attr_accessor :user_id, :role_id, :location_id
+  attr_accessor :user_id, :role_id, :location_id
 
-  # def init_user_role
-  #   UsersRole.create!(user_id: user.id, role_id: 9, location_id: id)
-  # end
+  def init_user_role
+    UsersRole.create!(user_id: user_id, role_id: 2, location_id: id)
+  end
 end
