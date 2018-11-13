@@ -4,7 +4,8 @@
     <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
      <div class="field">
-      <%= f.input :arrival %>
+      <%= f.label "Arrival" %>
+      <%= f.date_field :arrival %>
     </div>
 
     <div class="field">

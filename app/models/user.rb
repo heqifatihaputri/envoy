@@ -60,9 +60,9 @@ class User < ApplicationRecord
   has_many :invites
   has_many :visitors
 
-  validates_presence_of :full_name, :email, :phone_number, :if => lambda { |o| o.current_step == "personal" }
-  validates_presence_of :location_name, :company_name, :address, :if => lambda { |o| o.current_step == "location" }
-  validates_presence_of :password, :password_confirmation, :if => lambda { |o| o.current_step == "password" }
+  validates_presence_of :full_name, :email, :phone_number, :if => :personal?
+  validates_presence_of :location_name, :company_name, :address, :if => :location?
+  validates_presence_of :password, :password_confirmation, :if => :password?
 
   after_create :init_user_profile
 
