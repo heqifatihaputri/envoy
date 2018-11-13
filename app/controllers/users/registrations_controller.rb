@@ -6,26 +6,31 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/sign_up
   def new
-    build_resource({})
-    respond_with resource
+    # build_resource ||= {}
+    session[:sign_up_params] ||= {}
+    build_resource(session[:sign_up_params])
+    resource.current_step = session[:user_step]
   end
 
   # POST /resource
   def create
-    build_resource(sign_up_params)
-
-    if resource.save
-      if resource.active_for_authentication?
-        set_flash_message :notice, :signed_up if is_navigational_format?
-        sign_up(resource_name, resource)
-        respond_with resource, :location => after_sign_up_path_for(resource)
-      else
-        set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_navigational_format?
-        respond_with resource, :location => after_sign_up_path_for(resource)
-      end
+    session[:sign_up_params].deep_merge!(sign_up_params) if sign_up_params
+    build_resource(session[:sign_up_params])
+    resource.current_step = session[:user_step]
+    if params[:back_button]
+      resource.previous_step
+    elsif resource.last_step?
+      resource.save
     else
-      # clean_up_passwords
-      respond_with resource
+      resource.next_step
+    end
+    session[:user_step] = resource.current_step
+    if resource.new_record?
+      render 'new'
+    else
+      session[:user_step] = session[:sign_up_params] = nil
+      flash[:notice] = "User saved."
+      respond_with resource, :location => after_sign_up_path_for(resource)
     end
   end
 

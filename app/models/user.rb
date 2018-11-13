@@ -60,9 +60,58 @@ class User < ApplicationRecord
   has_many :invites
   has_many :visitors
 
+  validates_presence_of :full_name, :email, :phone_number, :if => lambda { |o| o.current_step == "personal" }
+  validates_presence_of :location_name, :company_name, :address, :if => lambda { |o| o.current_step == "location" }
+  validates_presence_of :password, :password_confirmation, :if => lambda { |o| o.current_step == "password" }
+
   after_create :init_user_profile
 
   attr_accessor :address, :company_name, :location_name, :user_id, :role_id, :location_id
+
+  attr_writer :current_step
+
+  def personal?
+    current_step == "personal"
+  end
+  
+  def location?
+    current_step == "location"
+  end
+
+  def password?
+    current_step == "password"
+  end
+
+  def current_step
+    @current_step || steps.first
+  end
+
+  def steps
+    %w[personal location password]
+  end
+
+  def next_step
+    self.current_step = steps[steps.index(current_step)+1]
+  end
+
+  def previous_step
+    self.current_step = steps[steps.index(current_step)-1]
+  end
+
+  def first_step?
+    current_step == steps.first
+  end
+
+  def last_step?
+    current_step == steps.last
+  end
+
+  def all_valid?
+    steps.all? do |step|
+      self.current_step = step
+      valid?
+    end
+  end
 
   private
 
