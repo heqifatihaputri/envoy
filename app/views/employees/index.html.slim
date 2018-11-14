@@ -1,0 +1,27 @@
+p#notice= notice
+h1 Employees
+table width="100%" 
+  thead
+    tr
+      th Location
+      th Full name
+      th Email
+      th Phone number
+      th Assistant email
+      th Delete at
+      th colspan="3" 
+  tbody
+    - @employees.each do |employee|
+      tr
+        td= employee.location.company_name
+        td= employee.full_name
+        td= employee.email
+        td= employee.phone_number
+        td= employee.assistant_email
+        td= employee.delete_at
+        td= link_to 'Show', employee
+        td= link_to 'Edit', edit_employee_path(employee)
+        td= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' }
+br/
+- if current_user.has_role?('Global Admin' && 'Location Admin')
+  = link_to 'New Employee', new_employee_path

@@ -1,0 +1,49 @@
+.wrapper
+  p#notice= notice
+  h1 Invites
+  .search
+    = form_tag invites_path, :method => 'get' do
+      = label_tag(:search, "")
+      p
+        = text_field_tag :search, params[:search], placeholder: "Searching Invites"
+        = submit_tag "Search"
+      br/
+  div
+    = form_tag invites_path, :method => 'get' do
+      = label_tag(:date, "")
+      p
+        = date_field_tag :date, params[:date]
+        = submit_tag "Submit"
+      br/
+  = link_to "Export", invites_path(format: "xlsx"), class: 'small-button'
+  table width="100%" 
+    thead
+      tr
+        th Full name
+        th Location id
+        th Arrival
+        th Visitor Email Address
+        th Host
+        th Sign in time
+        th colspan="3" 
+    tbody
+      - @invites.each do |invite|
+        tr
+          td
+            b= link_to invite.full_name, edit_invite_path(invite)
+          td= invite.location.company_name
+          td= invite.arrival.strftime("%e %b %Y %H:%M:%S%p")
+          td= invite.email_visitor
+          td= invite.user.full_name
+          td
+            - if invite.signed_in?
+              = invite.sign_in_time.strftime("%e %b %Y %H:%M:%S%p")
+            - else
+              | Not yet
+              td
+                = link_to 'Sign In', invite_signed_in_path(invite), method: :put
+                = link_to 'Delete Invite', invite, method: :delete, data: { confirm: 'Are you sure?' }
+          td
+  br/
+  = link_to 'New Invite', new_invite_path
+  = link_to 'Bulk create invites'

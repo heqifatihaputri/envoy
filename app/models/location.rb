@@ -28,6 +28,7 @@ class Location < ApplicationRecord
   attr_accessor :user_id, :role_id, :location_id
 
   def init_user_role
-    UsersRole.create!(user_id: user_id, role_id: 2, location_id: id)
+    global_admin = UsersRole.create!(user_id: user_id, role_id: Role.global_admin.id, location_id: id)
+    # UsersRole.create!(user_id: user_id, role_id: 2, location_id: id)
   end
 end

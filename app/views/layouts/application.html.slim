@@ -1,0 +1,55 @@
+doctype html
+html
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    title EnvoyApp
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  body
+    nav.navbar.navbar-inverse.navbar-top.navbar-fixed-top
+      .container-fluid
+        .container
+          .navbar-header
+            button.navbar-toggle.collapsed aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" type="button" 
+              span.sr-only Toggle navigation
+              span.icon-bar
+              span.icon-bar
+              span.icon-bar
+            a.navbar-brand href="/"  Envoy App
+          #navbar.navbar-collapse.collapse
+            ul.nav.navbar-nav
+              li.dropdown
+                - if user_signed_in?
+                  a.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button" 
+                    - if @_current_location
+                      = @_current_location.company_name
+                    ul.dropdown-menu
+                      - current_user.locations.uniq.each do |location|
+                        li= link_to location.company_name, edit_private_location_change_path(location_id: location.id)
+                      li= link_to 'Add Location', new_location_path
+            ul.nav.navbar-nav.navbar-right
+              li.dropdown
+                a.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button" 
+                  | Profile
+                  span.caret
+                ul.dropdown-menu
+                  - if user_signed_in?
+                    li= link_to "Edit profile", edit_user_registration_path
+                  - else
+                    li= link_to "Sign up", new_user_registration_path
+                    li= link_to "Login", new_user_session_path
+                  - if user_signed_in?
+                    li.divider role="separator" 
+                    li= link_to "Logout", destroy_user_session_path, method: :delete
+    - if user_signed_in?
+      .sidenav
+        li= link_to "Visitor Log", visitors_path
+        li= link_to "Invites", invites_path
+        li= link_to "All Employees", employees_path
+        - if current_user.has_role?('Employee' && 'Global Admin' && 'Location Admin')
+          li= link_to "Admin Roles", admin_roles_path
+          li= link_to "Device"
+          li= link_to "Settings"
+    #main-container.container
+      = yield

@@ -118,9 +118,12 @@ class User < ApplicationRecord
   def init_user_profile
     unless self.invited_to_sign_up?
       location = Location.create(company_name: company_name, location_name: "HQ", address: address)
-      UsersRole.create!(user_id: id, role_id: 2, location_id: location.id)
-      UsersRole.create!(user_id: id, role_id: 3, location_id: location.id)
-      UsersRole.create!(user_id: id, role_id: 7, location_id: location.id)
+      global_admin = UsersRole.create!(user_id: id, role_id: Role.global_admin.id, location_id: location.id)
+      location_admin = UsersRole.create!(user_id: id, role_id: Role.location_admin.id, location_id: location.id)
+      employee = UsersRole.create!(user_id: id, role_id: Role.employee.id, location_id: location.id)
+      # UsersRole.create!(user_id: id, role_id: 2, location_id: location.id)
+      # UsersRole.create!(user_id: id, role_id: 3, location_id: location.id)
+      # UsersRole.create!(user_id: id, role_id: 7, location_id: location.id)
     end
   end
 

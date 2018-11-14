@@ -1,0 +1,13 @@
+p#notice= notice
+p
+  strong Location name:
+  = @location.location_name
+p
+  strong Company name:
+  = @location.company_name
+p
+  strong Address:
+  = @location.address
+= link_to 'Edit', edit_location_path(@location)
+| |
+= link_to 'Back', locations_path

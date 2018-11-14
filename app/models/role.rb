@@ -34,4 +34,12 @@ has_many :users_roles
 has_many :users, through: :users_roles
 has_many :locations, through: :users_roles
 
+scope :super_admin, -> {find_by(name: 'Super Admin')}
+scope :global_admin, -> {find_by(name: 'Global Admin')}
+scope :location_admin, -> {find_by(name: 'Location Admin')}
+scope :front_desk_admin, -> {find_by(name: 'Front Desk Admin')}
+scope :security_admin, -> {find_by(name: 'Security Admin')}
+scope :billing_admin, -> {find_by(name: 'Billing Admin')}
+scope :employee, -> {find_by(name: 'Employee')}
+
 end

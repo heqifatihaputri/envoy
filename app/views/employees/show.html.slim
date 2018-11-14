@@ -1,0 +1,22 @@
+p#notice= notice
+p
+  strong Location:
+  = @employee.location.company_name
+p
+  strong Full name:
+  = @employee.full_name
+p
+  strong Email:
+  = @employee.email
+p
+  strong Phone number:
+  = @employee.phone_number
+p
+  strong Assistant email:
+  = @employee.assistant_email
+p
+  strong Delete at:
+  = @employee.delete_at
+= link_to 'Edit', edit_employee_path(@employee)
+| |
+= link_to 'Back', employees_path

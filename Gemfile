@@ -37,12 +37,15 @@ gem 'pg_search'
 gem 'carrierwave'
 gem 'mini_magick'
 
+gem "slim-rails"
 gem 'rubyzip', '= 1.0.0'
 gem 'axlsx', '= 2.0.1'
 gem 'axlsx_rails'
 gem 'fast_jsonapi'
 gem 'dynamic_selectable', git: 'https://github.com/mattantonelli/dynamic_selectable.git'
 gem 'ransack', github: 'activerecord-hackery/ransack'
+gem 'fullcalendar-rails'
+gem 'momentjs-rails'
 # gem 'active_model_serializers'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'

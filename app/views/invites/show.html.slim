@@ -1,0 +1,25 @@
+p#notice= notice
+p
+  strong Location:
+  = @invite.location.company_name
+p
+  strong Arrival:
+  = @invite.arrival
+p
+  strong Full name:
+  = @invite.full_name
+p
+  strong Email visitor:
+  = @invite.email_visitor
+p
+  strong Host:
+  = @invite.user.full_name
+p
+  strong Private notes:
+  = @invite.private_notes
+p
+  strong Sign in time:
+  = @invite.sign_in_time
+= link_to 'Edit', edit_invite_path(@invite)
+| |
+= link_to 'Back', invites_path

@@ -1,0 +1,13 @@
+= simple_form_for(@employee) do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+  .field
+    = f.input :full_name
+  .field
+    = f.input :email
+  .field
+    = f.input :phone_number
+  .field
+    = f.input :assistant_email
+  .form-actions
+    = f.button :submit

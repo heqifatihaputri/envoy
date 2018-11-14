@@ -1,0 +1,57 @@
+.wrapper
+  p#notice= notice
+  h1 Visitor Logs
+  .search
+    = form_tag visitors_path, :method => 'get' do
+      = label_tag(:search, "")
+      p
+        = text_field_tag :search, params[:search], placeholder: "Searching Visitor"
+        = submit_tag "Search", :name => nil
+      br/
+  div
+    = form_tag visitors_path, :method => 'get' do
+      = label_tag(:date, "")
+      p
+        = date_field_tag :date, params[:date]
+        = submit_tag "Submit"
+      br/
+  = link_to "Export", visitors_path(format: "xlsx"), class: 'small-button'
+  table width="100%" 
+    thead
+      tr
+        th Your full name
+        th Location
+        th Your email address
+        th Private notes
+        th Photo
+        th Host
+        th Sign in time
+        th Sign out time
+        th colspan="3" 
+    tbody
+      - @visitors.each do |visitor_log|
+        tr
+          td
+            - if current_user.roles.pluck(:name).include?('Global Admin' || 'Location Admin' || 'Front Desk Admin') == true
+              = link_to visitor_log.your_full_name, edit_visitor_path(visitor_log)
+            - else
+              = visitor_log.your_full_name
+          td= visitor_log.location.company_name
+          td= visitor_log.your_email_address
+          td= visitor_log.private_notes
+          td= image_tag(visitor_log.photo_url.default.url, alt: 'Image') if visitor_log.photo_url?
+          td= visitor_log.user.full_name
+          td= visitor_log.sign_in_time
+          td
+            - if visitor_log.signed_out? == false
+              | Not Yet
+            - else
+              = visitor_log.sign_in_time.strftime("%e %b %Y %H:%M:%S%p")
+          td
+            - if visitor_log.signed_out? == false
+              = link_to 'Sign Out', visitor_signed_out_path(visitor_log), method: :put
+          td
+            - if current_user.roles.pluck(:name).include?('Global Admin' || 'Location Admin') == true
+              = link_to 'Delete Visitor', visitor_log, method: :delete, data: { confirm: 'Are you sure?' }
+  br/
+  = link_to 'New Visitor Log', new_visitor_path

@@ -1,0 +1,22 @@
+= simple_form_for(@location) do |form|
+  - if location.errors.any?
+    #error_explanation
+      h2
+        = pluralize(location.errors.count, "error")
+        | prohibited this location from being saved:
+      ul
+        - location.errors.full_messages.each do |message|
+          li= message
+  .field
+    = form.label :location_name
+    = form.text_field :location_name
+  .field
+    = form.label :company_name
+    = form.text_field :company_name
+  .field
+    = form.label :address
+    = form.text_field :address
+  .field
+    = form.hidden_field :user_id, value: current_user.id
+  .actions
+    = form.submit

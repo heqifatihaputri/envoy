@@ -1,0 +1,18 @@
+.wrapper
+  = simple_form_for(@invite) do |f|
+    = f.error_notification
+    = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+    .field
+      = f.label "Arrival"
+      = f.date_field :arrival
+    .field
+      = f.input :full_name
+    .field
+      = f.input :email_visitor
+    .field
+      = f.label "Host"
+      = f.collection_select :user_id, @_current_location.users.order(:full_name).uniq, :id, :full_name, include_blank: false
+    .field
+      = f.input :private_notes
+    .form-actions
+      = f.button :submit
