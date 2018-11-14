@@ -27,7 +27,8 @@ html
                     ul.dropdown-menu
                       - current_user.locations.uniq.each do |location|
                         li= link_to location.company_name, edit_private_location_change_path(location_id: location.id)
-                      li= link_to 'Add Location', new_location_path
+                      - if current_user.has_role?('Global Admin')
+                        li= link_to 'Add Location', new_location_path
             ul.nav.navbar-nav.navbar-right
               li.dropdown
                 a.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button" 
